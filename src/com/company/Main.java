@@ -63,18 +63,43 @@ public class Main {
         StringTokenizer st = new StringTokenizer(line, delim, true);
 
         Fraction a = buildFraction(st);
+        if(a==null)
+            return;
         String operator =  st.nextToken();
+        if(!delim.contains(operator)){
+            System.out.println("Error in entered data");
+            return;
+        }
+
         Fraction b = buildFraction(st);
+        if(a==null)
+            return;
 
         result(a, b, operator);
     }
     private static Fraction buildFraction(StringTokenizer st){
-        String token = st.nextToken();
-        int nom = Integer.parseInt(token);
-        token = st.nextToken();
-        token = st.nextToken();
-        int den = Integer.parseInt(token);
-        return new Fraction(nom, den);
+        try {
+            String token = st.nextToken();
+            int nom = Integer.parseInt(token);
+
+            token = st.nextToken();
+            if(!token.equals("/")) {
+                System.out.println("Error in entered data");
+                return null;
+            }
+
+            token = st.nextToken();
+            int den = Integer.parseInt(token);
+            if(den == 0){
+                System.out.println("Error: zero-denominator");
+            }
+
+            return new Fraction(nom, den);
+        }
+        catch(Exception e){
+            System.out.println("Error in entered data");
+        }
+        return null;
     }
 
     private static void result(Fraction a, Fraction b, String operator){
