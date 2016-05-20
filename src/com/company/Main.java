@@ -1,5 +1,6 @@
 package com.company;
 
+import java.io.File;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -7,8 +8,19 @@ public class Main {
 
     public static void main(String[] args) {
         String delim = "+-*/:";
-        Scanner input = new Scanner(System.in);
-
+        Scanner input = null;
+        if (args.length == 1)
+        {
+            try {
+                input = new Scanner(new File(args[0]));
+            }
+            catch (Exception e) {
+                System.out.println("File not found. Console input.");
+            }
+        }
+        else {
+            input = new Scanner(System.in);
+        }
         while(input.hasNext()){
             String line = input.nextLine();
             parseLine(line, delim);
