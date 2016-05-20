@@ -21,6 +21,7 @@ public class Fraction {
     }
 
     public Fraction(int nom, int den) {
+
         this.den = den;
         this.nom = nom;
         euclid();
@@ -36,7 +37,10 @@ public class Fraction {
 
     @Override
     public String toString() {
-        return  nom + "/" + den;
+        if(den<0)
+            return  -nom + "/" + -den;
+        else
+            return  nom + "/" + den;
     }
 
     private int gcd(int a, int b) {
