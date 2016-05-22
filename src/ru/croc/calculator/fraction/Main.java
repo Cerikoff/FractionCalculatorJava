@@ -1,14 +1,10 @@
-package com.company;
+package ru.croc.calculator.fraction;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+/**
+ * Created by Igor Serikov on 22.05.2016.
+ */
+import ru.croc.calculator.fraction.util.FractionOperations;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -16,7 +12,7 @@ import java.util.StringTokenizer;
 public class Main {
 
     private static boolean isFileOutput = false;
-    private static Document docOutput = null;
+    private static DOM docOutput = null;
 
     public static void main(String[] args) {
         String delim = "+-*/:";
@@ -26,12 +22,8 @@ public class Main {
         {
             try {
                 input = new Scanner(new File(args[0]));
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                docOutput = factory.newDocumentBuilder().newDocument();
+                docOutput = new DOM();
                 isFileOutput = true;
-
-                Element root = docOutput.createElement("root");
-                docOutput.appendChild(root);
             }
             catch (Exception e) {
                 System.out.println("File not found. Console input.");
@@ -47,14 +39,10 @@ public class Main {
             parseLine(line, delim);
         }
 
-        File file = new File("test.xml");
-
         try{
-            Transformer transformer = TransformerFactory.newInstance().newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.transform(new DOMSource(docOutput), new StreamResult(file));
+            docOutput.writeToFile("test.xml");
         } catch (Exception e) {
-            System.out.println("Error with output file");
+            System.out.println("Error with DOM transform");
         }
     }
 
@@ -109,42 +97,30 @@ public class Main {
                 res = FractionOperations.plus(a, b).toString();
                 if(isFileOutput==false)
                     System.out.println(res);
-                else{
-                    Element item = docOutput.createElement("item");
-                    item.setAttribute("result", res);
-                    docOutput.getFirstChild().appendChild(item);
-                }
+                else
+                    docOutput.newResultItem("item", res);
                 break;
             case "-":
                 res = FractionOperations.minus(a, b).toString();
                 if(isFileOutput==false)
                     System.out.println(res);
-                else{
-                    Element item = docOutput.createElement("item");
-                    item.setAttribute("result", res);
-                    docOutput.getFirstChild().appendChild(item);
-                }
+                else
+                    docOutput.newResultItem("item", res);
                 break;
             case "*":
                 res = FractionOperations.multiplication(a, b).toString();
                 if(isFileOutput==false)
                     System.out.println(res);
-                else{
-                    Element item = docOutput.createElement("item");
-                    item.setAttribute("result", res);
-                    docOutput.getFirstChild().appendChild(item);
-                }
+                else
+                    docOutput.newResultItem("item", res);
                 break;
             case "/":
             case ":":
                 res = FractionOperations.division(a, b).toString();
                 if(isFileOutput==false)
                     System.out.println(res);
-                else{
-                    Element item = docOutput.createElement("item");
-                    item.setAttribute("result", res);
-                    docOutput.getFirstChild().appendChild(item);
-                }
+                else
+                    docOutput.newResultItem("item", res);
                 break;
             default:
                 break;

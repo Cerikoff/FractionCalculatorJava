@@ -1,4 +1,9 @@
-package com.company;
+package ru.croc.calculator.fraction.util;
+
+/**
+ * Created by Igor Serikov on 22.05.2016.
+ */
+import ru.croc.calculator.fraction.Fraction;
 
 public class FractionOperations {
 
