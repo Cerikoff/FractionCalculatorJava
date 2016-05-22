@@ -1,7 +1,9 @@
 package ru.croc.calculator.fraction;
 
 /**
- * Created by Igor Serikov on 22.05.2016.
+ * Fraction class
+ *
+ * @author Igor Serikov
  */
 public class Fraction {
     private int nom;
@@ -23,8 +25,10 @@ public class Fraction {
         this.den = den;
     }
 
+    /**
+     * Class constructor
+     */
     public Fraction(int nom, int den) {
-
         this.den = den;
         this.nom = nom;
         euclid();

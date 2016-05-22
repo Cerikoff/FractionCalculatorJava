@@ -1,14 +1,14 @@
 package ru.croc.calculator.fraction;
 
-/**
- * Created by Igor Serikov on 22.05.2016.
- */
 import ru.croc.calculator.fraction.util.FractionOperations;
 
 import java.io.File;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+/**
+ * Created by Igor Serikov on 22.05.2016.
+ */
 public class Main {
 
     private static boolean isFileOutput = false;

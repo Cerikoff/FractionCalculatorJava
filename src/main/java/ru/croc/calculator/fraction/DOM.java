@@ -16,6 +16,9 @@ import java.io.File;
 public class DOM {
     private Document docOutput;
 
+    /**
+     * Class constructor
+     */
     DOM(){
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
@@ -27,12 +30,23 @@ public class DOM {
         docOutput.appendChild(root);
     }
 
+    /**
+     * Create new item in DOM
+     *
+     * @param  itemName Name of creating item
+     * @param  res Result expression
+     */
     public void newResultItem(String itemName, String res){
         Element item = docOutput.createElement(itemName);
         item.setAttribute("result", res);
         docOutput.getFirstChild().appendChild(item);
     }
 
+    /**
+     * Write DOM to XML file
+     *
+     * @param  fileName Name of output file
+     */
     public void writeToFile(String fileName) throws TransformerException {
         File file = new File(fileName);
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
