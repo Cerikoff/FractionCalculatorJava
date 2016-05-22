@@ -58,7 +58,6 @@ public class Main {
             System.out.println("Error in entered data");
             return;
         }
-
         Fraction b = buildFraction(st);
         if(a==null)
             return;
