@@ -41,7 +41,7 @@ public class Main {
 
         if(isFileOutput==true) {
             try {
-                docOutput.writeToFile("test.xml");
+                docOutput.writeToFile("D:/output.xml");
             } catch (Exception e) {
                 System.out.println("Error with DOM transform");
             }
@@ -81,6 +81,7 @@ public class Main {
             int den = Integer.parseInt(token);
             if(den == 0){
                 System.out.println("Error: zero-denominator");
+                return null;
             }
 
             return new Fraction(nom, den);
@@ -117,7 +118,13 @@ public class Main {
                 break;
             case "/":
             case ":":
-                res = FractionOperations.division(a, b).toString();
+                try {
+                    res = FractionOperations.division(a, b).toString();
+                }
+                catch (Exception e){
+                    System.out.println("Divide by 0");
+                    break;
+                }
                 if(isFileOutput==false)
                     System.out.println(res);
                 else

@@ -60,7 +60,9 @@ public class FractionOperations {
      * @return Fraction
      * @see    Fraction
      */
-    public static Fraction division(Fraction a, Fraction b)   {
+    public static Fraction division(Fraction a, Fraction b) throws Exception {
+        if(b.getNom()==0)
+            throw new Exception("Divide by 0");
         int newNom = a.getNom() * b.getDen();
         int newDen = a.getDen() * b.getNom();
         return new Fraction(newNom, newDen);
