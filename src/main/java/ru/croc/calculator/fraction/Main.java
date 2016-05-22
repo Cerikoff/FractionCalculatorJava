@@ -39,10 +39,12 @@ public class Main {
             parseLine(line, delim);
         }
 
-        try{
-            docOutput.writeToFile("test.xml");
-        } catch (Exception e) {
-            System.out.println("Error with DOM transform");
+        if(isFileOutput==true) {
+            try {
+                docOutput.writeToFile("test.xml");
+            } catch (Exception e) {
+                System.out.println("Error with DOM transform");
+            }
         }
     }
 
